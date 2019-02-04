@@ -3,7 +3,7 @@ var app =               express();
 var port =              process.env.PORT || 3000;
 
 app.get('/', function(req, res){
-  var htmltxt = '<center><h1>Welcome</h1></center>
+  var htmltxt = '<center><h1>Welcome</h1></center>';
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(htmltxt);
 });
