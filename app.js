@@ -17,8 +17,8 @@ app.get('/', function(req, res, next){
 app.get('/voice.xml', function(req, res, next){
   filetxt  = '<?xml version="1.0" encoding="UTF-8"?>';
   filetxt += '<Response>';
-  filetxt += '<Say voice="alice">Hello we are from IPE Teacher Learning Program. This call is to inform you that you are invited for third phase'
-  filetxt += ' teacher learning trainning. We will sortly call you regarding your confirmation. Thankyou and have a nice day.</Say>';
+  filetxt += '<Say voice="woman" language="en-IN">Hello we are from IPE, Teacher Learning Program. This call is to inform you that, you are invited for third phase'
+  filetxt += ' teacher learning program. We will sortly call you regarding your confirmation. Thankyou, and have a nice day.</Say>';
   filetxt += '<Play>http://demo.twilio.com/docs/classic.mp3</Play>';
   filetxt += '</Response>';
   res.writeHead(200, {'Content-Type': 'text/xml'});
