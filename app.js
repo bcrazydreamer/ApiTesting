@@ -9,7 +9,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/voice.xml', function(req, res){
-  filetxt  = '<?xml version="1.0" encoding="UTF-8"?>;
+  filetxt  = '<?xml version="1.0" encoding="UTF-8"?>';
   filetxt += '<Response>';
   filetxt += '<Say voice="alice">Hello we are from IPE Teacher Learning Program. This call is to inform you that you are invited for third phase'
   filetxt += ' teacher learning trainning. We will sortly call you regarding your confirmation. Thankyou and have a nice day.</Say>';
