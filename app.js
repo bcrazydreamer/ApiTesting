@@ -25,6 +25,17 @@ app.get('/voice.xml', function(req, res, next){
   res.end(filetxt);
 });
 
+app.post('/voice.xml', function(req, res, next){
+  filetxt  = '<?xml version="1.0" encoding="UTF-8"?>';
+  filetxt += '<Response>';
+  filetxt += '<Say voice="alice">Hello we are from IPE Teacher Learning Program. This call is to inform you that you are invited for third phase'
+  filetxt += ' teacher learning trainning. We will sortly call you regarding your confirmation. Thankyou and have a nice day.</Say>';
+  filetxt += '<Play>http://demo.twilio.com/docs/classic.mp3</Play>';
+  filetxt += '</Response>';
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(filetxt);
+});
+
 app.listen(port,()=>{
   console.log("started at",port)
 });
