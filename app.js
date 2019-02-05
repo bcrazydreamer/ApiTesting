@@ -2,6 +2,11 @@ var express =           require("express");
 var app =               express();
 var port =              process.env.PORT || 3000;
 var path =              require('path');
+
+const accountSid = 'AC3b5e34fd00b8570bd386608d4f1fe670';
+const authToken = 'cb8d1373eeda8c02600f6a3cbb32ab2a';
+const client = require('twilio')(accountSid, authToken);
+
 app.use(express.static(path.join(__dirname,"public")));
 
 app.use(function(req, res, next) {
@@ -11,7 +16,23 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res, next){
-  var htmltxt = '<center><h1>Welcome</h1></center>';
+    var htmltxt = '<center><h1>Make Call</h1></center>';
+    htmltxt += '<br><center><a href="/makeCall">Make Call</a></center>';
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.end(htmltxt);
+});
+
+app.get('/makeCall', function(req, res, next){
+  var htmltxt = '<center><h1>Calling...</h1></center>';
+  htmltxt += '<br><center><a href="/">Back</a></center>';
+  client.calls
+      .create({
+         url: 'https://bcrazytesting.herokuapp.com/voice.xml',
+         to: '+918708372614',
+         from: '+18143249002'
+       })
+      .then(call => console.log(call.sid))
+      .done();
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(htmltxt);
 });
@@ -19,8 +40,6 @@ app.get('/', function(req, res, next){
 app.post('/voice.xml', function(req, res, next){
   filetxt  = '<?xml version="1.0" encoding="UTF-8"?>';
   filetxt += '<Response>';
-  //filetxt += '<Say voice="woman" language="en-IN">Hello we are from IPE, Teacher Learning Program. This call is to inform you that, you are invited for third phase'
-  //filetxt += ' teacher learning program. We will sortly call you regarding your confirmation. Thankyou, and have a nice day.</Say>';
   filetxt += '<Play>https://bcrazytesting.herokuapp.com/English.mp3</Play>';
   filetxt += '</Response>';
   res.writeHead(200, {'Content-Type': 'text/xml'});
