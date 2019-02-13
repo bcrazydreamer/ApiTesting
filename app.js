@@ -3,8 +3,8 @@ var app =               express();
 var port =              process.env.PORT || 3000;
 var path =              require('path');
 
-const accountSid = 'AC3b5e34fd00b8570bd386608d4f1fe670';
-const authToken = 'cb8d1373eeda8c02600f6a3cbb32ab2a';
+const accountSid = '' ;
+const authToken = '';
 const client = require('twilio')(accountSid, authToken);
 
 app.use(express.static(path.join(__dirname,"public")));
